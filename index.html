@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr Moema · Medical Aesthetic Parlour</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8FAFB;
+      color: #1A2A3A;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ============================================================
+       OPTION 5: COOL & CLINICAL PALETTE
+       Primary:     #1A4A4A (Deep Teal)
+       Background:  #F8FAFB (Ice White)
+       Accent:      #E8A898 (Soft Coral)
+       Section Bg:  #E8ECEE (Mist Grey)
+       Text:        #1A2A3A (Dark)
+       Muted:       #4A5A62 (Steel)
+       Borders:     #DDE2E6
+    ============================================================ */
+
+    .bg-primary { background: #1A4A4A; }
+    .bg-white { background: #F8FAFB; }
+    .bg-ice { background: #F8FAFB; }
+    .bg-mist { background: #E8ECEE; }
+    .text-primary { color: #1A4A4A; }
+    .text-coral { color: #E8A898; }
+    .text-muted { color: #4A5A62; }
+    .border-coral { border-color: #E8A898; }
+    .border-soft { border-color: #DDE2E6; }
+
+    /* ----- UTILITY ----- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .rounded-3xl { border-radius: 28px; }
+    .rounded-2xl { border-radius: 20px; }
+    .rounded-xl { border-radius: 16px; }
+
+    .shadow-premium {
+      box-shadow: 0 20px 48px -16px rgba(26, 74, 74, 0.06), 0 4px 16px -4px rgba(26, 74, 74, 0.03);
+    }
+
+    .shadow-card {
+      box-shadow: 0 8px 24px -8px rgba(26, 74, 74, 0.04), 0 2px 8px rgba(26, 74, 74, 0.02);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .transition-smooth {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-6px);
+    }
+
+    /* ----- ANIMATIONS ----- */
+    @keyframes floatSoft {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+      100% { transform: translateY(0px); }
+    }
+    .float-card {
+      animation: floatSoft 7s ease-in-out infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(36px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.9s ease forwards;
+    }
+    .fade-up-delay-1 { animation-delay: 0.1s; }
+    .fade-up-delay-2 { animation-delay: 0.2s; }
+    .fade-up-delay-3 { animation-delay: 0.3s; }
+    .fade-up-delay-4 { animation-delay: 0.4s; }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes pulseSoft {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+
+    /* ----- NAV ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 18px 32px;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(248, 250, 251, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 2px 24px rgba(26, 74, 74, 0.04);
+      border-bottom: 1px solid rgba(221, 226, 230, 0.6);
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+      color: #1A4A4A;
+      font-weight: 700;
+    }
+    .nav-logo span { color: #E8A898; }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 32px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #4A5A62;
+      letter-spacing: 0.03em;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #E8A898;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #1A4A4A; }
+    .nav-cta {
+      display: none;
+      background: #1A4A4A;
+      color: #fff;
+      padding: 10px 30px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(26, 74, 74, 0.12);
+      transition: all 0.3s;
+      letter-spacing: 0.04em;
+    }
+    .nav-cta:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(26, 74, 74, 0.18);
+      background: #1A5A5A;
+    }
+    .mobile-menu-btn {
+      background: none;
+      border: none;
+      color: #1A4A4A;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links, .nav-cta { display: flex; }
+      .mobile-menu-btn { display: none; }
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 80px;
+      position: relative;
+      overflow: hidden;
+      background: #F8FAFB;
+    }
+    .hero .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.1;
+    }
+    .orb-1 {
+      width: 700px; height: 700px;
+      background: #E8A898;
+      top: -200px;
+      left: -200px;
+      opacity: 0.08;
+    }
+    .orb-2 {
+      width: 600px; height: 600px;
+      background: #1A4A4A;
+      bottom: -150px;
+      right: -150px;
+      opacity: 0.04;
+    }
+    .orb-3 {
+      width: 400px; height: 400px;
+      background: #E8ECEE;
+      top: 40%;
+      right: 5%;
+      opacity: 0.15;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      line-height: 1.06;
+      color: #1A4A4A;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span { color: #E8A898; }
+    .hero-sub {
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: #4A5A62;
+      max-width: 480px;
+      margin-top: 18px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid #DDE2E6;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #1A4A4A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+      letter-spacing: 0.02em;
+    }
+    .hero-badge i { width: 14px; height: 14px; color: #E8A898; }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+    .btn-primary {
+      background: #1A4A4A;
+      color: #fff;
+      padding: 14px 38px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(26, 74, 74, 0.12);
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(26, 74, 74, 0.18);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid #DDE2E6;
+      color: #1A4A4A;
+      padding: 14px 38px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.03em;
+    }
+    .btn-secondary:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      background: #fff;
+    }
+
+    /* booking card */
+    .booking-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 28px;
+      padding: 34px 30px;
+      box-shadow: 0 24px 56px -16px rgba(26, 74, 74, 0.06);
+      max-width: 460px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .booking-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #1A4A4A;
+      margin-bottom: 4px;
+    }
+    .booking-card .sub {
+      font-size: 0.75rem;
+      color: #4A5A62;
+      margin-bottom: 22px;
+      letter-spacing: 0.02em;
+    }
+    .booking-card input,
+    .booking-card select,
+    .booking-card textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #DDE2E6;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.5);
+      transition: 0.3s;
+      font-family: 'Inter', sans-serif;
+      color: #1A2A3A;
+    }
+    .booking-card input:focus,
+    .booking-card select:focus,
+    .booking-card textarea:focus {
+      outline: none;
+      border-color: #E8A898;
+      box-shadow: 0 0 0 4px rgba(232, 168, 152, 0.1);
+    }
+    .booking-card .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .booking-card .form-group { margin-bottom: 12px; }
+    .booking-card .btn-book {
+      width: 100%;
+      background: #1A4A4A;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 28px rgba(26, 74, 74, 0.10);
+      margin-top: 4px;
+      letter-spacing: 0.03em;
+    }
+    .booking-card .btn-book:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 36px rgba(26, 74, 74, 0.15);
+      background: #1A5A5A;
+    }
+    .booking-card .note {
+      font-size: 0.65rem;
+      color: #8A9AA2;
+      text-align: center;
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    @media (min-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+      .booking-card { margin: 0; }
+    }
+
+    /* ----- SECTION TITLES ----- */
+    .section-label {
+      color: #E8A898;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: #1A4A4A;
+      margin-top: 4px;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .section-desc {
+      color: #4A5A62;
+      font-size: 0.95rem;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    /* ----- ABOUT ----- */
+    .about-grid {
+      display: grid;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-image {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 48px -12px rgba(26, 74, 74, 0.06);
+      position: relative;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .about-image:hover img { transform: scale(1.02); }
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .about-feature {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid #DDE2E6;
+      padding: 14px 18px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #1A4A4A;
+      transition: all 0.3s;
+    }
+    .about-feature:hover {
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(26, 74, 74, 0.04);
+      border-color: #E8A898;
+    }
+    .about-feature i { color: #E8A898; width: 18px; height: 18px; }
+
+    @media (min-width: 768px) {
+      .about-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ----- TREATMENTS ----- */
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 28px;
+      margin-top: 44px;
+    }
+    .treatment-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 30px 22px 26px;
+      box-shadow: 0 8px 24px -8px rgba(26, 74, 74, 0.03);
+      border: 1px solid #DDE2E6;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .treatment-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #E8A898, #1A4A4A, #E8A898);
+      background-size: 200% 100%;
+      animation: shimmer 6s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .treatment-card:hover::before { opacity: 1; }
+    .treatment-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px -12px rgba(26, 74, 74, 0.06);
+      border-color: rgba(232, 168, 152, 0.15);
+    }
+    .treatment-icon {
+      background: rgba(26, 74, 74, 0.03);
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1A4A4A;
+      transition: all 0.3s;
+    }
+    .treatment-card:hover .treatment-icon {
+      background: #1A4A4A;
+      color: #fff;
+    }
+    .treatment-icon i { width: 24px; height: 24px; }
+    .treatment-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 16px;
+      color: #1A4A4A;
+    }
+    .treatment-card p {
+      font-size: 0.75rem;
+      color: #4A5A62;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .treatment-card .learn {
+      margin-top: 18px;
+      color: #E8A898;
+      font-weight: 500;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s;
+    }
+    .treatment-card:hover .learn { gap: 12px; }
+    .treatment-card .learn i { width: 14px; height: 14px; }
+
+    /* ----- WHY CHOOSE (glass) ----- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 28px;
+      margin-top: 44px;
+    }
+    .why-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 24px;
+      padding: 30px 24px;
+      transition: all 0.4s;
+      box-shadow: 0 4px 16px rgba(26, 74, 74, 0.01);
+    }
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(26, 74, 74, 0.04);
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(232, 168, 152, 0.15);
+    }
+    .why-card i { color: #E8A898; width: 26px; height: 26px; }
+    .why-card .icon-wrap {
+      background: rgba(232, 168, 152, 0.08);
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .why-card:hover .icon-wrap { background: rgba(232, 168, 152, 0.16); }
+    .why-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 16px;
+      color: #1A4A4A;
+    }
+    .why-card p {
+      font-size: 0.75rem;
+      color: #4A5A62;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ----- TESTIMONIALS (carousel) ----- */
+    .testimonial-carousel {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 28px;
+      padding: 44px 36px;
+      max-width: 740px;
+      margin: 44px auto 0;
+      text-align: center;
+      box-shadow: 0 16px 40px -12px rgba(26, 74, 74, 0.03);
+      transition: opacity 0.5s ease;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .testimonial-carousel .quote-icon {
+      color: #E8A898;
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 14px;
+    }
+    .testimonial-carousel .text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #1A2A3A;
+      font-style: italic;
+    }
+    .testimonial-carousel .stars {
+      color: #E8A898;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      margin: 14px 0 8px;
+    }
+    .testimonial-carousel .name {
+      font-weight: 600;
+      color: #1A4A4A;
+      font-size: 0.85rem;
+    }
+
+    /* ----- STATS ----- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      text-align: center;
+      border-top: 1px solid #DDE2E6;
+      border-bottom: 1px solid #DDE2E6;
+      padding: 48px 0;
+    }
+    .stats-grid .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #1A4A4A;
+    }
+    .stats-grid .num span { color: #E8A898; }
+    .stats-grid .label {
+      font-size: 0.75rem;
+      color: #4A5A62;
+      margin-top: 2px;
+      letter-spacing: 0.04em;
+    }
+    @media (min-width: 640px) {
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ----- GALLERY ----- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+    .gallery-item {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 1/1;
+      transition: all 0.4s;
+      box-shadow: 0 4px 16px rgba(26, 74, 74, 0.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26, 74, 74, 0.1), rgba(232, 168, 152, 0.05));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+    .gallery-item.span-2 {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+    @media (min-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+      .gallery-item.span-2 { grid-column: span 2; aspect-ratio: 2/1; }
+    }
+
+    /* ----- CONTACT ----- */
+    .contact-grid {
+      display: grid;
+      gap: 56px;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #DDE2E6;
+    }
+    .contact-info-item i {
+      color: #E8A898;
+      width: 22px;
+      height: 22px;
+    }
+    .contact-info-item span {
+      color: #3A5A5A;
+      font-size: 0.85rem;
+    }
+    .contact-form {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 28px;
+      padding: 34px 30px;
+      box-shadow: 0 8px 24px -8px rgba(26, 74, 74, 0.03);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #DDE2E6;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.4);
+      margin-bottom: 14px;
+      font-family: 'Inter', sans-serif;
+      transition: 0.3s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #E8A898;
+      box-shadow: 0 0 0 4px rgba(232, 168, 152, 0.08);
+    }
+    .contact-form button {
+      background: #1A4A4A;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(26, 74, 74, 0.08);
+      letter-spacing: 0.03em;
+    }
+    .contact-form button:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 32px rgba(26, 74, 74, 0.14);
+      background: #1A5A5A;
+    }
+    .map-placeholder {
+      background: rgba(26, 74, 74, 0.02);
+      border-radius: 24px;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4A5A62;
+      margin-top: 22px;
+      border: 1px solid #DDE2E6;
+      font-size: 0.8rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      background: #1A4A4A;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 52px 24px 36px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+    .footer-logo span { color: #E8A898; }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.75rem;
+    }
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.04em;
+    }
+    .footer-links a:hover { color: #E8A898; }
+    .footer-social {
+      display: flex;
+      gap: 22px;
+    }
+    .footer-social a {
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover { color: #E8A898; transform: translateY(-2px); }
+    .footer-copy {
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 28px;
+      margin-top: 4px;
+      text-align: center;
+      width: 100%;
+      letter-spacing: 0.04em;
+    }
+
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .footer-copy { text-align: left; }
+    }
+
+    /* ----- REVEAL ON SCROLL ----- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----- responsive tweaks ----- */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 8px; }
+    .mb-2 { margin-bottom: 8px; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo">Dr <span>Moema</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#treatments">Treatments</a>
+        <a href="#results">Results</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#book" class="nav-cta">Book Appointment</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <i data-lucide="menu" style="width:26px;height:26px;"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="home">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container hero-grid">
+      <div>
+        <h1 class="hero-title fade-up">Reveal Your Most<br /><span>Confident Self</span>.</h1>
+        <p class="hero-sub fade-up fade-up-delay-1">Professional Medical Aesthetic Treatments tailored to help you look refreshed, youthful and naturally beautiful.</p>
+        <div class="hero-badges fade-up fade-up-delay-2">
+          <span class="hero-badge"><i data-lucide="badge-check"></i> Medical Doctor</span>
+          <span class="hero-badge"><i data-lucide="shield-check"></i> Safe Treatments</span>
+          <span class="hero-badge"><i data-lucide="heart-handshake"></i> Personalized Care</span>
+          <span class="hero-badge"><i data-lucide="sparkles"></i> Modern Technology</span>
+        </div>
+        <div class="hero-buttons fade-up fade-up-delay-3">
+          <a href="#book" class="btn-primary">Book Appointment</a>
+          <a href="#treatments" class="btn-secondary">Explore Treatments <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+        </div>
+      </div>
+
+      <div class="fade-up fade-up-delay-2 float-card" id="book">
+        <div class="booking-card">
+          <h3>Book Consultation</h3>
+          <p class="sub">Fill in your details and we'll get back to you</p>
+          <form id="bookingForm">
+            <div class="form-group">
+              <input type="text" placeholder="Full Name" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group"><input type="tel" placeholder="Phone" /></div>
+              <div class="form-group"><input type="email" placeholder="Email" /></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><input type="date" /></div>
+              <div class="form-group">
+                <select>
+                  <option>Botox</option>
+                  <option>Dermal Fillers</option>
+                  <option>Chemical Peels</option>
+                  <option>Skin Rejuvenation</option>
+                  <option>Acne Treatments</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea rows="2" placeholder="Message (optional)"></textarea>
+            </div>
+            <button type="submit" class="btn-book">Book Consultation</button>
+            <p class="note">We'll contact you within one business day.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section class="section-padding" id="about" style="background:#F8FAFB;">
+    <div class="container about-grid">
+      <div class="about-image reveal">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=800&fit=crop&crop=face&q=80" alt="Dr Moema" />
+      </div>
+      <div>
+        <span class="section-label reveal">About</span>
+        <h2 class="section-title reveal">Compassionate, evidence-based care</h2>
+        <p class="section-desc reveal" style="max-width:100%;">Dr Moema combines medical precision with an artist's eye. Every treatment is tailored to enhance your natural beauty, ensuring results that feel like you — only more refreshed.</p>
+        <div class="about-features reveal">
+          <div class="about-feature"><i data-lucide="shield-check"></i> Medical Expertise</div>
+          <div class="about-feature"><i data-lucide="heart-handshake"></i> Patient Focused</div>
+          <div class="about-feature"><i data-lucide="scan-face"></i> Advanced Technology</div>
+          <div class="about-feature"><i data-lucide="sparkle"></i> Natural Results</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TREATMENTS ====== -->
+  <section class="section-padding" id="treatments" style="background:#E8ECEE;">
+    <div class="container">
+      <span class="section-label reveal">Treatments</span>
+      <h2 class="section-title reveal">Medical aesthetic services</h2>
+      <p class="section-desc reveal">Advanced, personalised treatments designed to enhance your natural beauty.</p>
+      <div class="treatments-grid">
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="syringe"></i></div><h4>Botox</h4><p>Smooth fine lines and prevent wrinkles.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="droplets"></i></div><h4>Dermal Fillers</h4><p>Restore volume and contour.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="sparkles"></i></div><h4>Chemical Peels</h4><p>Reveal brighter, smoother skin.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="scan-face"></i></div><h4>Skin Rejuvenation</h4><p>Laser &amp; light therapies.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="shield"></i></div><h4>Acne Treatments</h4><p>Targeted solutions for clear skin.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="sparkle"></i></div><h4>Pigmentation</h4><p>Even out skin tone effectively.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="stethoscope"></i></div><h4>Hair Loss Treatments</h4><p>Advanced hair restoration.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+        <div class="treatment-card reveal"><div class="treatment-icon"><i data-lucide="droplets"></i></div><h4>IV Drips</h4><p>Wellness and hydration therapy.</p><div class="learn">Learn More <i data-lucide="arrow-right"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BEFORE / AFTER ====== -->
+  <section class="section-padding" id="results" style="background:#F8FAFB;">
+    <div class="container text-center">
+      <span class="section-label reveal">Results</span>
+      <h2 class="section-title reveal">Before &amp; After</h2>
+      <p class="section-desc reveal" style="margin:0 auto;">See the real transformations our patients have experienced.</p>
+      <div class="reveal" style="border-radius:28px;overflow:hidden;margin-top:36px;box-shadow:0 20px 48px -12px rgba(26,74,74,0.06);">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=500&fit=crop&q=80" alt="Before and after comparison" style="width:100%;height:auto;display:block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== WHY CHOOSE ====== -->
+  <section class="section-padding" style="background:#E8ECEE;">
+    <div class="container">
+      <span class="section-label reveal">Why choose us</span>
+      <h2 class="section-title reveal">Exceptional care, outstanding results</h2>
+      <p class="section-desc reveal">Our commitment to excellence and patient wellbeing sets us apart.</p>
+      <div class="why-grid">
+        <div class="why-card reveal"><div class="icon-wrap"><i data-lucide="shield-check"></i></div><h4>Qualified Medical Doctor</h4><p>Registered practitioner with aesthetic expertise.</p></div>
+        <div class="why-card reveal"><div class="icon-wrap"><i data-lucide="sparkles"></i></div><h4>Personalised Treatment Plans</h4><p>Unique to your anatomy and goals.</p></div>
+        <div class="why-card reveal"><div class="icon-wrap"><i data-lucide="heart"></i></div><h4>Modern Equipment</h4><p>State-of-the-art technology for safety.</p></div>
+        <div class="why-card reveal"><div class="icon-wrap"><i data-lucide="award"></i></div><h4>Natural-Looking Results</h4><p>Enhanced, never overdone — subtle.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STATS ====== -->
+  <section class="container section-padding" style="padding-top:44px;padding-bottom:44px;">
+    <div class="stats-grid reveal">
+      <div><div class="num">96<span>+</span></div><div class="label">Happy Patients</div></div>
+      <div><div class="num">5<span>★</span></div><div class="label">Patient Rating</div></div>
+      <div><div class="num">10<span>+</span></div><div class="label">Medical Treatments</div></div>
+      <div><div class="num">100<span>%</span></div><div class="label">Personalised Care</div></div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS ====== -->
+  <section class="section-padding" id="testimonials" style="background:#E8ECEE;">
+    <div class="container text-center">
+      <span class="section-label reveal">Testimonials</span>
+      <h2 class="section-title reveal">What our patients say</h2>
+      <p class="section-desc reveal" style="margin:0 auto;">Real stories from real patients who trusted us with their care.</p>
+      <div class="testimonial-carousel reveal" id="testimonialContainer">
+        <i data-lucide="quote" class="quote-icon"></i>
+        <p class="text" id="testimonialText">I finally found a doctor who genuinely listens. My skin has never looked healthier, and every visit feels so professional.</p>
+        <div class="stars">★★★★★</div>
+        <p class="name" id="testimonialName">Lerato Mokoena</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== GALLERY ====== -->
+  <section class="section-padding" id="gallery" style="background:#F8FAFB;">
+    <div class="container">
+      <span class="section-label reveal">Gallery</span>
+      <h2 class="section-title reveal">Our clinic in pictures</h2>
+      <p class="section-desc reveal">A glimpse into our serene, state-of-the-art medical aesthetic suite.</p>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=400&h=400&fit=crop&q=80" alt="Clinic interior" /><div class="overlay"></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&h=400&fit=crop&q=80" alt="Treatment room" /><div class="overlay"></div></div>
+        <div class="gallery-item span-2"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=400&fit=crop&q=80" alt="Clinic reception" /><div class="overlay"></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=400&fit=crop&q=80" alt="Medical equipment" /><div class="overlay"></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=400&fit=crop&q=80" alt="Consultation" /><div class="overlay"></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&q=80" alt="Wellness" /><div class="overlay"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACT ====== -->
+  <section class="section-padding" id="contact" style="background:#E8ECEE;">
+    <div class="container contact-grid">
+      <div>
+        <span class="section-label reveal">Contact</span>
+        <h2 class="section-title reveal">Get in touch</h2>
+        <p class="section-desc reveal" style="max-width:100%;">We'd love to hear from you. Reach out with any questions or to book your consultation.</p>
+        <div class="reveal" style="margin-top:24px;">
+          <div class="contact-info-item"><i data-lucide="map-pin"></i> <span>260 Sefako Makgatho Drive, Sinoville, Pretoria</span></div>
+          <div class="contact-info-item"><i data-lucide="phone"></i> <span>012 543 9935</span></div>
+          <div class="contact-info-item"><i data-lucide="clock-3"></i> <span>Mon–Fri: 09:00 – 18:00</span></div>
+        </div>
+        <div class="map-placeholder reveal"><i data-lucide="map" style="margin-right:8px;width:18px;height:18px;"></i> View on Google Maps</div>
+      </div>
+      <div class="contact-form reveal">
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#1A4A4A;margin-bottom:14px;">Send a message</h4>
+        <form>
+          <input type="text" placeholder="Your name" />
+          <input type="email" placeholder="Email address" />
+          <textarea rows="3" placeholder="How can we help?"></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Dr <span>Moema</span></div>
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#treatments">Treatments</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="footer-copy">© 2026 Dr Moema Medical Aesthetic Parlour · Pretoria</div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    // ----- Lucide icons -----
+    lucide.createIcons();
+
+    // ----- Navbar scroll effect -----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ----- Testimonial carousel -----
+    const testimonials = [
+      { name: 'Lerato Mokoena', text: 'I finally found a doctor who genuinely listens. My skin has never looked healthier, and every visit feels so professional.' },
+      { name: 'Thabo Nkosi', text: 'Exceptional service from consultation to treatment. The clinic is beautiful, and the results exceeded my expectations.' },
+      { name: 'Ayanda Khumalo', text: 'Dr Moema made me feel comfortable throughout my treatment. My confidence has improved tremendously.' },
+      { name: 'Naledi Molefe', text: 'The staff are incredibly welcoming, and the attention to detail is amazing. Highly recommended.' },
+      { name: 'Kagiso Mahlangu', text: 'Professional, clean and modern. My pigmentation has improved so much after only a few sessions.' },
+      { name: 'Zanele Mthembu', text: 'Beautiful clinic, outstanding care and natural-looking results. I\'ll definitely be returning.' }
+    ];
+
+    let currentTestimonial = 0;
+    const textEl = document.getElementById('testimonialText');
+    const nameEl = document.getElementById('testimonialName');
+    const container = document.getElementById('testimonialContainer');
+
+    function updateTestimonial() {
+      const t = testimonials[currentTestimonial];
+      textEl.textContent = t.text;
+      nameEl.textContent = t.name;
+      container.style.opacity = '0.3';
+      setTimeout(() => { container.style.opacity = '1'; }, 60);
+    }
+
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateTestimonial();
+    }, 4500);
+
+    // ----- Scroll reveal (Intersection Observer) -----
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+
+    // ----- Mobile menu -----
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      const links = document.querySelector('.nav-links');
+      const cta = document.querySelector('.nav-cta');
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+        if (cta) cta.style.display = 'none';
+      } else {
+        links.style.display = 'flex';
+        if (cta) cta.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '68px';
+        links.style.left = '24px';
+        links.style.right = '24px';
+        links.style.background = 'rgba(248,250,251,0.98)';
+        links.style.backdropFilter = 'blur(16px)';
+        links.style.padding = '28px';
+        links.style.borderRadius = '24px';
+        links.style.boxShadow = '0 16px 40px rgba(26,74,74,0.04)';
+        links.style.border = '1px solid #DDE2E6';
+        if (cta) { cta.style.position = 'absolute'; cta.style.top = '280px'; cta.style.left = '24px'; cta.style.right = '24px'; cta.style.justifyContent = 'center'; }
+      }
+    });
+
+    // re-init icons
+    setTimeout(() => lucide.createIcons(), 100);
+  </script>
+</body>
+</html>
